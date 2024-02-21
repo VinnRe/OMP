@@ -20,6 +20,10 @@ body {
     padding: 20px 5%;
     background-color: #E3E6F3;
     box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 #navbar {
@@ -27,19 +31,6 @@ body {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-}
-
-#navbar input[type=text] {
-    float: right;
-    flex: 1;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-    border-radius: 5px;
-    width: 50rem;
-    background-color: #f3f4f8;
 }
 
 #navbar li {
@@ -72,16 +63,82 @@ body {
     left: 20px;
 }
 
+#navbar input[type=text],
+#navbar button {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#search-bar {
+    /* padding: 6px; */
+    border: none;
+    font-size: 17px;
+    border-radius: 5px;
+    background-color: #f3f4f8;
+    width: 650px;
+}
+
+#search-button {
+    padding: 6px 12px;
+    border: none;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #088178;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: #06695f;
+}
+
 /* Home Page */
 #hero {
-    background-image: url("assets/homepage/hero.png");
-    height: 60vh;
+    background-image: url("/assets/imgs/hero_bg.png");
+    background-repeat: no-repeat;
+    height: 90vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;
-    padding: 0 80px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: self-start;
     justify-content: center;
+}
+
+#hero-texts {
+    padding: 0 80px;
+    margin-top: 10px;
+}
+
+#hero-texts h4 {
+    font-size: 25px;
+    margin: 0;
+}
+#hero-texts h2,
+#hero-texts h1 {
+    font-size: 35px;
+    margin: 0;
+    color: #2ea29a;
+} 
+
+#hero-texts p {
+    font-size: 20px;
+    margin: 0;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+#hero button {
+    background-image: url("/assets/imgs/button_splash3.png");
+    background-color: transparent;
+    background-size: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    font-size: 25px;
+    padding: 14px 80px 14px 65px;
+    cursor: pointer;
 }
