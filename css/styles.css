@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
+:root {
+    --background-color: #E3E6F3;
+    --dark-text-color: #1a1a1a;
+    --light-color: #088178;
+    --light-color2: #2ea29a;
+    --light-white-color: #f3f4f8;
+    --dark-color: #06695f;
+}
+
 * {
     font-family: "Fredoka", sans-serif;
     font-weight: 500;
@@ -8,7 +17,7 @@
 
 body {
     margin: 0;
-    background-color: #E3E6F3;
+    background-color: var(--background-color);
 }
 
 /* NavBar */
@@ -18,7 +27,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px 5%;
-    background-color: #E3E6F3;
+    background-color: var(--background-color);
     box-shadow: 0 5px 15px rgb(0, 0, 0, 0.06);
     z-index: 999;
     position: sticky;
@@ -43,13 +52,13 @@ body {
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
-    color: #1a1a1a;
+    color: var(--dark-text-color);
     transition: 0.6s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active {
-    color: #088178;
+    color: var(--light-color);
 }
 
 #navbar li a.active::after,
@@ -57,7 +66,7 @@ body {
     content: "";
     width: 40%;
     height: 3px;
-    background: #088178;
+    background: var(--light-color);
     position: absolute;
     bottom: -2px;
     left: 50%;
@@ -74,7 +83,7 @@ body {
     border: none;
     font-size: 17px;
     border-radius: 5px;
-    background-color: #f3f4f8;
+    background-color: var(--light-white-color);
     width: 650px;
 }
 
@@ -83,14 +92,14 @@ body {
     border: none;
     font-size: 20px;
     border-radius: 5px;
-    background-color: #088178;
+    background-color: var(--light-color);
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #search-button:hover {
-    background-color: #06695f;
+    background-color: var(--dark-color);
 }
 
 /* Home Page */
@@ -116,7 +125,7 @@ body {
 .hero-texts h1 {
     font-size: 35px;
     margin: 0;
-    color: #2ea29a;
+    color: var(--light-color2);
 } 
 
 .hero-texts p {
@@ -152,4 +161,22 @@ body {
 .hero-background img {
     max-width: 100%;
     height: auto;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+}
+
+.categories-header {
+    text-align: center;
+    width: 100%;
+}
+
+.category-sections {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px;
+    text-align: center;
 }
