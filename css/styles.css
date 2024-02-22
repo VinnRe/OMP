@@ -35,7 +35,7 @@ body {
 
 #navbar li {
     list-style-type: none;
-    padding: 0 20px;
+    padding: 0 10px;
     position: relative;
 }
 
@@ -59,8 +59,9 @@ body {
     height: 3px;
     background: #088178;
     position: absolute;
-    bottom: -4px;
-    left: 20px;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #navbar input[type=text],
@@ -70,7 +71,6 @@ body {
 }
 
 #search-bar {
-    /* padding: 6px; */
     border: none;
     font-size: 17px;
     border-radius: 5px;
@@ -95,12 +95,8 @@ body {
 
 /* Home Page */
 #hero {
-    background-image: url("/assets/imgs/hero_bg.png");
-    background-repeat: no-repeat;
     height: 90vh;
     width: 100%;
-    background-size: cover;
-    background-position: top 25% right 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -108,23 +104,22 @@ body {
     justify-content: center;
 }
 
-#hero-texts {
+.hero-texts {
     padding: 0 80px;
-    margin-top: 10px;
 }
 
-#hero-texts h4 {
+.hero-texts h4 {
     font-size: 25px;
     margin: 0;
 }
-#hero-texts h2,
-#hero-texts h1 {
+.hero-texts h2,
+.hero-texts h1 {
     font-size: 35px;
     margin: 0;
     color: #2ea29a;
 } 
 
-#hero-texts p {
+.hero-texts p {
     font-size: 20px;
     margin: 0;
     margin-top: 3px;
@@ -141,4 +136,20 @@ body {
     font-size: 25px;
     padding: 14px 80px 14px 65px;
     cursor: pointer;
+}
+
+.hero-background {
+    position: absolute;
+    right: 0;
+    top: 15%;
+    bottom: 0;
+    left: 20%;
+    z-index: -1;
+    width: 80%;
+    height: 80%;
+}
+
+.hero-background img {
+    max-width: 100%;
+    height: auto;
 }
