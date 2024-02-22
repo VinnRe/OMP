@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+
+:root {
+    --background-color: #E3E6F3;
+    --dark-text-color: #1a1a1a;
+    --light-color: #088178;
+    --light-color2: #2ea29a;
+    --light-white-color: #f3f4f8;
+    --dark-color: #06695f;
+}
+
+* {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    /* font-size: 14px; */
+    font-weight: 500;
+    line-height: 1.8;
+    padding: 0;
+    margin: 0;
+}
+
+* , ::before, ::after {
+    box-sizing: border-box;
+}
+
+#body--ls {
+    color: var(--dark-text-color);
+    background-color: var(--background-color);
+}
+
+#body a {
+    text-decoration: none;
+}
+
+.welcome h2 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--light-white-color);
+    margin-bottom: 20px;
+}
+
+.social ul {
+    list-style: none;
+}
+
+/* .container {
+    max-width: 110px;
+    margin: 0 auto;
+} */
+
+.wrapper>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    min-height: 500px;
+    margin: 5em auto;
+    background-color: var(--light-color);
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.45) 0 25px 20px -20px;
+}
+
+:is(.login, .signup) > div {
+    position: relative;
+    flex: 1 0 50%;
+    padding: 60px;
+}
+
+.content-heading--ls .y-style { 
+    display: flex;
+    flex-direction: column;
+}
+
+.logo a {
+    display: inline;
+    margin-bottom: 60px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-text-color);
+}
+
+.logo span {
+    color: var(--dark-color);
+}
+
+.content-heading--ls p {
+    color: var(--light-white-color);
+}
+
+.content-form--ls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-form--ls form input:not(#terms, #rmbr--l) {
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border-radius: 7px;
+    border: 1px solid var(--light-color2);
+}
+
+.content-form--ls form input::placeholder {
+    color: var(--light-color);
+}
+
+.content-form--ls form button {
+    background-color: var(--light-color2);
+    color: var(--light-white-color);
+    width: 100%;
+    margin: 30px 0;
+    border: 0;
+    line-height: 42px;
+    border: 7px;
+    border-radius: 5px;
+    font-weight: 70;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+}
+
+.content-form--ls form button:hover {
+    background-color: #0d898e;
+}
+
+.afterform {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.content-form--ls form .check {
+    position: relative;
+    padding-left: 20px;
+    font-size: 12px;
+    float: left;
+}
+
+.content-form--ls form .check input {
+    position: absolute;
+    left: 0;
+    top: 4px;
+}
+
+.content-form--ls form .forgot-pass {
+    float: right;
+    font-size: 12px;
+}
+
+.content-form--ls form label a, .afterform a {
+    color: var(--light-color2);
+}
+
+.content-form--ls form :is(p, label), a:hover .afterform a:hover {
+    border-bottom: 1px;
+}
+
+.content-form--ls::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-color: var(--background-color);
+    border-radius: 60%;
+    transform: translate3d(-27%, -21%, 0);
+    -webkit-transform: translate3d(-27%, -21%, 0);
+}
+
+.y-style {
+    position: relative;
+    transform: translate3d(0, 20%, 0);
+    -webkit-transform: translate3d(0, 20%, 0);
+    animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    -webkit-animation: fade-in 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fade-in {
+    /* THIS MIGHT CAUSE PROBLEMS BUT I DON'T KNOW YET */
+    content-form--ls{
+        opacity: 0;
+        transform: translate3d(0, 20%, 0);
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+:is(.login-show .signup-show) .y-style {
+    transform: translate3d(0, 0, 0);
+}
+
+.social :is(ul, p) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    gap: 20;
+    margin: 20px 0;
+}
+
+.social p::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 90%;
+    background-color: var(--background-color);
+    top: 0;
+    margin-left: 11px;
+}
+
+.social p span {
+    background-color: var(--background-color);
+    z-index: 1;
+    padding: 0 20px;
+    color: var(--dark-text-color);
+    font-size: 11px;
+}
+
+.social a {
+    display: flex;
+    font-size: 20px;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transition: transform 0.3s;
+}
+
+.social a:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+}
+
+.social .google {
+    color: green;
+}
+
+.social .facebook {
+    color: rgb(0, 110, 255);
+}
+
+.welcome {
+    text-align: center;
+}
+
+.signup-show, .signup .login-show .login {
+    display: flex;
+
+}
+
+/* .login {
+    display: none !important;
+} */
+
+@media screen and (min-width : 768px) {
+    .wrapper>div {
+        flex-direction: row;
+        max-width: 800px;
+    }
+    
+    .signup .content-heading--ls .y-style {
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .content-form--ls::before {
+        transform: translate3d(-18%, -10%, 0);
+        -webkit-transform: translate3d(-18%, -10%, 0);
+    }
+
+    .welcome {
+        text-align: left;
+        margin: 5em 0 auto;
+    }
+}
