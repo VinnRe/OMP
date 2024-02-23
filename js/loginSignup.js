@@ -1,15 +1,21 @@
-const signup = document.querySelector('.t-signup');
-const login = document.querySelector('.t-login');
-const loginSignupPage = document.querySelector('.login-signup--page');
+document.addEventListener("DOMContentLoaded", function(){
+    const signupLink = document.querySelector('.t-signup');
+    const loginLink = document.querySelector('.t-login');
+    const loginSection = document.querySelector('.login');
+    const signupSection = document.querySelector('.signup');
 
-signup.addEventListener('click', function() {
-    console.log("Signup link clicked");
-    loginSignupPage.classList.remove('login-show');
-    loginSignupPage.classList.add('signup-show');
-});
+    signupSection.style.display = 'none';
 
-login.addEventListener('click', function() {
-    console.log("Login link clicked");
-    loginSignupPage.classList.remove('signup-show');
-    loginSignupPage.classList.add('login-show');
+    signupLink.addEventListener('click', function(event){
+        event.preventDefault()
+        loginSection.style.display = 'none';
+        signupSection.style.display = 'flex';
+    })
+
+    loginLink.addEventListener('click', function(event){
+        event.preventDefault()
+        loginSection.style.display = 'flex';
+        signupSection.style.display = 'none';
+    })
+
 });
