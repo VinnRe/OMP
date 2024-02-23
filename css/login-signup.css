@@ -50,12 +50,12 @@
     margin: 0 auto;
 } */
 
-.wrapper>div {
+.wrapper > div {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 800px;
-    min-height: 500px;
+    min-height: auto;
     margin: 5em auto;
     background-color: var(--light-color);
     overflow: hidden;
@@ -65,7 +65,7 @@
 :is(.login, .signup) > div {
     position: relative;
     flex: 1 0 50%;
-    padding: 60px;
+    padding: 15% 5%;
 }
 
 .content-heading--ls .y-style { 
@@ -254,7 +254,7 @@
 } */
 
 @media screen and (min-width : 768px) {
-    .wrapper>div {
+    .wrapper > div {
         flex-direction: row;
         max-width: 800px;
     }
@@ -272,5 +272,30 @@
     .welcome {
         text-align: left;
         margin: 5em 0 auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper > div {
+        flex-direction: column;
+    }
+
+    .content-form--ls::before {
+        transform: translate3d(-18%, -10%, 0);
+        -webkit-transform: translate3d(-18%, -10%, 0);
+        width: 50em;
+        height: 35em;
+    }
+    /* FIX THE CIRCLE IF THE FORM IS CURRENTLY IN THE .signup */
+    :is(.signup) > div{
+        position: relative;
+        flex: 1 0 50%;
+        padding: 40% 5%;
+    }
+    
+    :is(.login) > div {
+        position: relative;
+        flex: 1 0 50%;
+        padding: 30% 5%;
     }
 }
