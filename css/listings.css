@@ -1,0 +1,62 @@
+:root {
+    --background-color: #E3E6F3;
+    --light-color: #088178;
+    --light-color2: #2ea29a;
+    --light-white-color: #f3f4f8;
+    --dark-text-color: #1a1a1a;
+    --dark-white-color: #dedede;
+    --dark-color: #06695f;
+}
+
+.listing-header {
+    text-align: center;
+    font-size: 28px;
+    color: var(--light-color2);
+    margin-bottom: 20px;
+}
+
+.listing-container {
+    display: flex;
+    justify-content: center;
+}
+
+.listing-container form {
+    background-color: var(--light-white-color);
+    border: 2px solid var(--dark-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--dark-text-color);
+    display: flex;
+    justify-content: center;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid var(--dark-color);
+    border-radius: 5px;
+}
+
+#create-listing-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--light-color2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#create-listing-button:hover {
+    background-color: var(--light-color);
+}

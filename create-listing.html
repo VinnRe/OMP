@@ -31,10 +31,29 @@
     </section>
 
     <!-- FORM SECTION -->
+    <h1 class="listing-header">Create Listing</h1>
     <div class="listing-container">
-        
+        <form action="//SUBMIT" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="item-images">Insert Picture</label><br>
+                <input type="file" id="item-images" name="item-image[]" multiple accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="item-name">Name</label><br>
+                <input type="text" id="item-name" name="item-name">
+            </div>
+            <div class="form-group">
+                <label for="item-price">Price</label><br>
+                <input type="number" id="item-price" name="item-price">
+            </div>
+            <div class="form-group">
+                <label for="item-details">Details</label><br>
+                <textarea id="item-details" name="item-details"></textarea>
+            </div>
+            <input type="submit" value="Create Listing" id="create-listing-button">
+        </form>
     </div>
 
-
+    <script src="/js/addListing.js"></script>
 </body>
 </html>
