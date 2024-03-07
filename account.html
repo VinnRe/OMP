@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/account.css">
 </head>
 <body>
     <!-- HEADER SECTION -->
@@ -26,6 +27,24 @@
                 <li><a href="account.html"><i class="material-symbols-outlined">account_circle</i></a></li>
                 
             </ul>
+        </div>
+    </section>
+
+    <!-- ACCOUNT SECTION -->
+    <section id="acc-section">
+        <div class="acc-container">
+            <div class="notLogged shown">
+                <h1>You are not logged in!</h1>
+                <!-- MAKE SURE IF USER PRESSES EITHER BUTTONS THEY'LL BE REDIRECTED TO THE RESPECTIVE FORM -->
+                <a href="login_signup.html" class="acc-log-btn">Login</a>
+                <a href="login_signup.html" class="acc-reg-btn">Sign Up</a>
+            </div>
+            
+            <div class="acc-settings">
+                <h2 class="acc-username">username</h2>
+                <p class="acc-address">Address: </p>
+                <button class="logout-btn">Logout</button>
+            </div>
         </div>
     </section>
 </body>
