@@ -8,6 +8,7 @@
     --dark-text-color: #1a1a1a;
     --dark-white-color: #dedede;
     --dark-color: #06695f;
+    --dark-color-transluscent: #06695f72;
 }
 
 * {
@@ -202,6 +203,12 @@ body {
     border-radius: 50px;
     border: #088178;
     border-style: solid;
+    transition: 0.5s;
+}
+
+.category img:hover {
+    background-color: var(--dark-color-transluscent);
+    transform: scale(1.2);
 }
 
 .for-you .listings {
