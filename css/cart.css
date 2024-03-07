@@ -1,0 +1,41 @@
+:root {
+    --background-color: #E3E6F3;
+    --light-color: #088178;
+    --light-color2: #2ea29a;
+    --light-white-color: #f3f4f8;
+    --dark-text-color: #1a1a1a;
+    --dark-white-color: #dedede;
+    --dark-color: #06695f;
+}
+
+#cart-section {
+    background-color: var(--dark-white-color);
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: var(--dark-color) solid;
+    border-radius: 15px;
+}
+
+#cart-section h2 {
+    color: var(--light-color);
+    text-align: center;
+}
+
+#cart-section p {
+    color: var(--light-color2);
+    text-align: center;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
