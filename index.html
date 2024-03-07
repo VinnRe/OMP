@@ -12,25 +12,20 @@
 
     <!-- HEADER SECTION -->
     <section id="header">
-        <a href="index.html"><img src="" class="logo"></a>
+        <a href="index.html"><img src="/assets/imgs/omp_logo_128.png" class="logo"></a>
+
+        <div class="search-container">
+            <input id="search-bar" type="text" placeholder="Search...">
+            <button id="search-button" class="material-symbols-outlined">search</button>
+        </div>
 
         <div>
             <ul id="navbar">
-
-                <!-- TODO -->
-                <!-- NEED TO FIX THE PADDING THINGY ON THE NAVBAR IT CAUSES A BIG SPACE ON THE RIGHT SIDE -->
-                
-                <!-- CHANGE THE HOME TO A LOGO BUTTON WHEN PRESSED IT GOES TO HOME -->
-                <!-- <li><a class="active" href="index.html">Home</a></li>  -->
-                <!-- MAKE SURE TO PUT THE SEARCH BAR AND BUTTON NEXT TO EACH OTHER -->
-                <li>
-                    <input id="search-bar" type="text" placeholder="Search...">
-                    <button id="search-button" class="material-symbols-outlined">search</button>
-                </li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href=""><i class="material-symbols-outlined">add_box</i></a></li>
-                <li><a href=""><i class="material-symbols-outlined">shopping_bag</i></a></li>
+                <li><a href="create_listing.html"><i class="material-symbols-outlined">add_box</i></a></li>
+                <li><a href="cart.html"><i class="material-symbols-outlined">shopping_bag</i></a></li>
+                <li><a href="account.html"><i class="material-symbols-outlined">account_circle</i></a></li>
+                
             </ul>
         </div>
     </section>
@@ -57,27 +52,36 @@
             </div>
             <div class="category-sections">
                 <div class="category">
-                    <a href="items.html#electronics"><img src="/assets/categories/electronics.png" alt="Electronics"></a>
+                    <a href="index.html#electronics"><img src="/assets/categories/electronics_512.png" alt="Electronics"></a>
                     <p>Electronics</p>
                 </div>
                 <div class="category">
-                    <a href="items.html#vehicles"><img src="/assets/categories/vehicles.png" alt="Vehicles"></a>
+                    <a href="index.html#vehicles"><img src="/assets/categories/vehicles_512.png" alt="Vehicles"></a>
                     <p>Vehicles</p>
                 </div>
                 <div class="category">
-                    <a href="items.html#toolsandequipment"><img src="/assets/categories/toolsandequipments.png" alt="ToolsAndEquipments"></a>
+                    <a href="index.html#toolsandequipment"><img src="/assets/categories/tools_and_equip_512.png" alt="ToolsAndEquipments"></a>
                     <p>Tools and Equipments</p>
                 </div>
                 <div class="category">
-                    <a href="items.html#properties"><img src="/assets/categories/properties.png" alt="properties"></a>
+                    <a href="index.html#properties"><img src="/assets/categories/properties_512.png" alt="properties"></a>
                     <p>Properties</p>
                 </div>
             </div>
         </div>
-        <div class="for-you">
 
+        <!-- FOR YOU -->
+        <div class="for-you">
+            <div class="categories-header">
+                <h2>For You</h2>
+            </div>
+            <div class="listings">
+                <!-- Insert the existing listings -->
+            </div>
         </div>
     </section>
+    <!-- <button id="addBoxBtn" style="display: inline;">Add Box</button>
+    <script src="js/addListing.js"></script> -->
 
     <script src="js/main.js"></script>
 </body>
