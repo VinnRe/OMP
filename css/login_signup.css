@@ -67,7 +67,12 @@
 :is(.login, .signup) > div {
     position: relative;
     flex: 1 0 50%;
-    padding: 15% 5%;
+    padding: 20% 5%;
+}
+
+:is(.signup) > div {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .content-heading--ls .y-style { 
