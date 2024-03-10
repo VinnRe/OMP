@@ -5,42 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/login_signup.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body id="body--ls">
+    <!-- HEADER SECTION -->
+    <section id="header">
+        <a href="index.html"><img src="/assets/imgs/omp_logo_128.png" class="logo"></a>
+
+        <div class="search-container">
+            <input id="search-bar" type="text" placeholder="Search...">
+            <button id="search-button" class="material-symbols-outlined">search</button>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="about.html">About</a></li>
+                <li><a href="create-listing.html"><i class="material-symbols-outlined">add_box</i></a></li>
+                <li><a href="cart.html"><i class="material-symbols-outlined">shopping_bag</i></a></li>
+                <li><a href="account.html"><i class="material-symbols-outlined">account_circle</i></a></li>
+                
+            </ul>
+        </div>
+    </section>
     <div id="login-signup--page" class="ls login-show">
         <div class="wrapper">
             <div class="login">
                 <div class="content-heading--ls">
                     <div class="y-style">
                         <!-- Change the anchor name to desired name -->
-                        <div class="logo"><a href="">Online <span>Market Place</span></a></div>
+                        <a href="index.html"><img src="/assets/imgs/omp_logo_128.png" class="logo"></a>
                         <div class="welcome">
                             <h2>Welcome to OMP!</h2>
-                            <p>Login or Signup</p>
+                            <p>Buy and Sell items with ease!</p>
                         </div>
                     </div>
                 </div>
                 <div class="content-form--ls">
                     <div class="y-style">
-                        <form action="">
+                        <form action="" id="loginForm">
                             <p>
                                 <label for="">Email</label>
-                                <input type="email" placeholder="Enter Email">
+                                <input type="email" id="loginEmail" placeholder="Enter Email" required>
                             </p>
                             <p>
                                 <label for="">Password</label>
-                                <input type="password" placeholder="Enter Password">
+                                <input type="password" placeholder="Enter Password" id="loginPassword" required>
                                 <p class="check">
                                     <input type="checkbox" id="rmbr--l">
                                     <label for="">Remember Me?</label>
                                 </p>
-                                <p class="forgot-pass">
-                                    <!-- Set the href to forgot pass page -->
+                                <!-- <p class="forgot-pass">
                                     <a href="#">Forgot Password?</a>
-                                </p>
+                                </p> -->
                             </p>
                             <p>
-                                <button type="submit">Login</button>
+                                <button type="submit" id="login-btn">Login</button>
                             </p>
                         </form>
                         <div class="afterform">
@@ -55,34 +76,36 @@
                 <div class="content-heading--ls">
                     <div class="y-style">
                         <!-- Change the anchor name to desired name -->
-                        <div class="logo"><a href="">Online <span>Market Place</span></a></div>
+                        <a href="index.html"><img src="/assets/imgs/omp_logo_128.png" class="logo"></a>
                         <div class="welcome">
                             <h2>Welcome to OMP!</h2>
-                            <p>Login or Signup</p>
+                            <p>Buy and Sell items with ease!</p>
                         </div>
                     </div>
                 </div>
                 <div class="content-form--ls">
                     <div class="y-style">
-                        <form action="">
+                        <form action="" id="signupForm">
                             <p>
                                 <label for="">Name</label>
-                                <input type="text" placeholder="Enter Name">
+                                <input type="text" placeholder="Enter Name" id="signupUsername" required>
                             </p>
                             <p>
                                 <label for="">Email</label>
-                                <input type="email" placeholder="Enter Email">
+                                <input type="email" placeholder="Enter Email" id="signupEmail" required>
                             </p>
                             <p>
                                 <label for="">Password</label>
-                                <input type="password" placeholder="Enter Password">
+                                <input type="password" placeholder="Enter Password" id="signupPassword" required>
+                                <label for="">Re-enter Password</label>
+                                <input type="password" placeholder="Re-enter Password" id="signupRepassword" required>
                                 <p class="check">
                                     <input type="checkbox" id="terms">
                                     <label for="">I agree to terms and conditions</label>
                                 </p>
                             </p>
                             <p>
-                                <button type="submit">Sign Up</button>
+                                <button type="submit" id="signup-btn">Sign Up</button>
                             </p>
                         </form>
                         <div class="social">
