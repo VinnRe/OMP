@@ -292,8 +292,24 @@ const server = http.createServer((req, res) => {
                     res.end(JSON.stringify({ message: 'Listing Created Successfully' }))
                 });
         });
-    } else if (req.method === 'GET' && req.url === '/listings') {
-        pool.query('SELECT * FROM listings', (err, rows) => {
+    } else if (req.method === 'GET' && req.url.startsWith('/listings')) {
+        const urlObject = url.parse(req.url, true);
+        const query = urlObject.query;
+        let queryStr = 'SELECT * FROM listings';
+        let queryParams = [];
+    
+        if (query.search) {
+            queryStr += ' WHERE itemName LIKE ? OR itemCategory LIKE ?';
+            const searchTerm = `%${query.search}%`;
+            queryParams = [searchTerm, searchTerm];
+        }
+
+        if (query.category) {
+            queryStr += ' WHERE itemCategory = ?';
+            queryParams.push(query.category);
+        }
+    
+        pool.query(queryStr, queryParams, (err, rows) => {
             if (err) {
                 console.error('Error executing query', err);
                 res.writeHead(500, { 'Content-Type' : 'application/json'});
