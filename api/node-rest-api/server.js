@@ -262,8 +262,8 @@ const server = http.createServer((req, res) => {
             const filePaths = req.files.map(file => file.path);
     
             // Insert listing data into the database
-            pool.query('INSERT INTO listings (itemName, itemPrice, itemDescription, userID) VALUES (?, ?, ?, ?)',
-                [listingData.itemName, listingData.itemPrice, listingData.itemDescription, userId],
+            pool.query('INSERT INTO listings (itemName, itemPrice, itemDescription, userID, itemCategory) VALUES (?, ?, ?, ?, ?)',
+                [listingData.itemName, listingData.itemPrice, listingData.itemDescription, userId, listingData.itemCategory],
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err)
@@ -295,18 +295,47 @@ const server = http.createServer((req, res) => {
     } else if (req.method === 'GET' && req.url === '/listings') {
         pool.query('SELECT * FROM listings', (err, rows) => {
             if (err) {
-                console.error('Error executing query', err)
-                res.writeHead(500, { 'Content-Type' : 'application/json'})
-                res.end(JSON.stringify({ error: 'Internal Server Error'}))
-                return
+                console.error('Error executing query', err);
+                res.writeHead(500, { 'Content-Type' : 'application/json'});
+                res.end(JSON.stringify({ error: 'Internal Server Error'}));
+                return;
             }
-            res.writeHead(200, { 'Content-Type' : 'application/json'})
-            res.end(JSON.stringify(rows))
-        })
+    
+            // Fetch image paths for each listing
+            const listingsWithImages = rows.map(async listing => {
+                const images = await fetchListingImages(listing.itemID);
+                return { ...listing, images };
+            });
+    
+            // Wait for all image paths to be fetched
+            Promise.all(listingsWithImages)
+                .then(listings => {
+                    res.writeHead(200, { 'Content-Type' : 'application/json'});
+                    res.end(JSON.stringify(listings));
+                })
+                .catch(error => {
+                    console.error('Error fetching listing images', error);
+                    res.writeHead(500, { 'Content-Type' : 'application/json'});
+                    res.end(JSON.stringify({ error: 'Internal Server Error'}));
+                });
+        });
     } else {
         // Handle other routes or methods
         res.writeHead(404, { 'Content-Type' : 'application/json'})
         res.end(JSON.stringify({ error: 'Not Found' }))
+    }
+
+    async function fetchListingImages(listingID) {
+        return new Promise((resolve, reject) => {
+            pool.query('SELECT imagePath FROM listing_images WHERE itemID = ?', [listingID], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    const images = rows.map(row => row.imagePath);
+                    resolve(images);
+                }
+            });
+        });
     }
 })
 
