@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: var(--dark-white-color);
+    background-color: var(--light-white-color);
     border: var(--dark-color) solid;
     border-radius: 10px;
     width: 60%;
@@ -23,8 +23,8 @@
 }
 
 .acc-log-btn,
-.acc-reg-btn,
-.logout-btn {
+.logout-btn,
+.update-btn {
     display: inline-block;
     padding: 10px 20px;
     margin: 10px;
@@ -36,14 +36,20 @@
     cursor: pointer;
 }
 
+.acc-log-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .acc-log-btn:hover,
-.acc-reg-btn:hover,
-.logout-btn:hover {
+.logout-btn:hover,
+.update-btn:hover {
     background-color: var(--light-color);
 }
 
 .acc-log-btn:active,
-.acc-reg-btn:active,
-.logout-btn:active {
+.logout-btn:active,
+.update-btn:active {
     transform: translateY(1px);
 }

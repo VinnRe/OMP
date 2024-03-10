@@ -33,19 +33,29 @@
     <!-- ACCOUNT SECTION -->
     <section id="acc-section">
         <div class="acc-container">
-            <div class="notLogged shown">
+            <div class="notLogged" id="notLogged">
                 <h1>You are not logged in!</h1>
                 <!-- MAKE SURE IF USER PRESSES EITHER BUTTONS THEY'LL BE REDIRECTED TO THE RESPECTIVE FORM -->
-                <a href="login_signup.html" class="acc-log-btn">Login</a>
-                <a href="login_signup.html" class="acc-reg-btn">Sign Up</a>
+                <a href="login-signup.html" class="acc-log-btn">Login</a>
             </div>
             
-            <div class="acc-settings">
+            <div class="acc-settings" id="acc-settings">
                 <h2 class="acc-username">username</h2>
+                <input type="text" id="editUsername" placeholder="Enter new username">
+                <button class="update-btn" id="updateUserNameButton">Update</button>
+                <p class="acc-email">Email: </p>
+                <input type="email" id="editEmail" placeholder="Enter new email">
+                <button class="update-btn" id="updateEmailButton">Update</button>
                 <p class="acc-address">Address: </p>
-                <button class="logout-btn">Logout</button>
+                <input type="text" id="editAddress" placeholder="Enter new address">
+                <button class="update-btn" id="updateAddressButton">Update</button>
+                <p class="acc-password">Password: </p>
+                <input type="password" id="editPassword" placeholder="Enter new password">
+                <button class="update-btn" id="updatePassButton">Update</button>
+                <button class="logout-btn" id="logoutButton">Logout</button>
             </div>
         </div>
     </section>
+    <script src="js/account.js"></script>
 </body>
 </html>
