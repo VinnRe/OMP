@@ -225,3 +225,69 @@ body {
     border: 1px solid var(--light-color2);
     box-sizing: border-box;
 }
+
+.listedItem {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: var(--dark-color) solid;
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.listedItem button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-color2);
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 150px;
+}
+
+.btn-container .prev-btn {
+    margin-right: 10px;
+}
+
+.buy-btn {
+    margin-bottom: 10px;
+}
+
+.scrollable-images {
+    overflow-x: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollable-images img {
+    /* Ensure the images are visible */
+    width: 50%;
+    max-width: 100%;
+    height: 150px;
+}
+
+.scrollable-images img:first-child {
+    display: inline-block;
+}
+
+.scrollable-images img:not(:first-child) {
+    display: none; /* Hide all images except the first one */
+}
+
+.item-details {
+    overflow-y: scroll;
+}
