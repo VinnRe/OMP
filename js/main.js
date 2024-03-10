@@ -1,3 +1,70 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const browseDealsButton = document.querySelector('#browse-deals');
+    const forYouSection = document.querySelector('.for-you');
+
+    if (browseDealsButton && forYouSection) {
+        browseDealsButton.addEventListener('click', function() {
+            forYouSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    } else {
+        console.error('Button or for-you section not found.');
+    }
+});
+
+
+document.querySelectorAll('.category').forEach(category => {
+    category.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        const categoryId = category.querySelector('p').id;
+        if (categoryId === 'all-categories') {
+            clearListings()
+            fetchListings(); // Call fetchListings function to show all listings
+        } else {
+            fetchListingsByCategory(categoryId); // Otherwise, fetch listings by category
+        }
+    });
+});
+
+function clearListings() {
+    const listingsContainer = document.querySelector('.for-you .listings');
+    listingsContainer.innerHTML = ''; // Clear existing listings
+}
+
+function fetchListingsByCategory(category) {
+    fetch(`http://localhost:3000/listings?category=${category}`)
+        .then(response => response.json())
+        .then(data => {
+            // Clear existing listings
+            const listingsContainer = document.querySelector('.for-you .listings');
+            listingsContainer.innerHTML = '';
+
+            // Populate listings based on fetched data
+            data.forEach(listing => {
+                const listingElement = document.createElement('div');
+                listingElement.classList.add('listing');
+                listingElement.innerHTML = `
+                    <div class="listedItem">
+                        <div class="image-container">
+                            <div class="scrollable-images">
+                                ${listingImages(listing.images)}
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <button class="prev-btn">&lt;</button>
+                            <button class="next-btn">&gt;</button>
+                        </div>
+                        <h3>${listing.itemName}</h3>
+                        <p>₱ ${listing.itemPrice}</p>
+                        <p class="item-details">${listing.itemDescription}</p>
+                        <button class='buy-btn'>Add to Cart</button>
+                    </div>
+                `;
+                listingsContainer.appendChild(listingElement);
+            });
+        })
+        .catch(error => console.error('Error fetching listings by category:', error));
+}
+
 function fetchListings() {
     fetch('http://localhost:3000/listings') // Assuming your server is running on localhost:3000
         .then(response => response.json())
