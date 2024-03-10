@@ -37,14 +37,39 @@
     color: var(--dark-text-color);
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 97%;
     padding: 10px;
     border: 1px solid var(--dark-color);
     border-radius: 5px;
+}
+
+.form-group .item-images {
+    width: 90%;
+}
+
+.form-group select {
+    width: 104%;
+}
+
+.form-group-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group-left,
+.form-group-right {
+    flex: 1;
+}
+
+.form-group-left {
+    margin-right: 10px; /* Adjust as needed */
 }
 
 #create-listing-button {
@@ -59,4 +84,16 @@
 
 #create-listing-button:hover {
     background-color: var(--light-color);
+}
+
+.popup {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
 }

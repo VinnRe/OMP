@@ -25,7 +25,6 @@
                 <li><a href="create-listing.html"><i class="material-symbols-outlined">add_box</i></a></li>
                 <li><a href="cart.html"><i class="material-symbols-outlined">shopping_bag</i></a></li>
                 <li><a href="account.html"><i class="material-symbols-outlined">account_circle</i></a></li>
-                
             </ul>
         </div>
     </section>
@@ -34,25 +33,35 @@
     <h1 class="listing-header">Create Listing</h1>
     <div class="listing-container">
         <form method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="item-images">Insert Picture</label><br>
-                <input type="file" id="item-images" name="item-image[]" multiple accept="image/*">
+            <div class="form-group form-group-container">
+                <div class="form-group form-group-left">
+                    <label for="item-images">Insert Picture</label><br>
+                    <input type="file" id="item-images" class="item-images" name="item-image[]" multiple accept="image/*">
+                    <div id="image-preview"></div>
+                </div>
+                <div class="form-group form-group-right">
+                    <label for="item-name">Name</label><br>
+                    <input type="text" id="item-name" name="item-name" placeholder="Insert Item Name">
+    
+                    <label for="item-price">Price</label><br>
+                    <input type="number" id="item-price" name="item-price" placeholder="PHP">
+    
+                    <label for="item-details">Details</label><br>
+                    <textarea id="item-details" name="item-details" placeholder="Insert Item Description"></textarea>
+    
+                    <label for="item-category">Category</label><br>
+                    <select id="item-category" name="item-category">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Tools-and-Equipment">Tools and Equipment</option>
+                        <option value="Properties">Properties</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="item-name">Name</label><br>
-                <input type="text" id="item-name" name="item-name">
-            </div>
-            <div class="form-group">
-                <label for="item-price">Price</label><br>
-                <input type="number" id="item-price" name="item-price">
-            </div>
-            <div class="form-group">
-                <label for="item-details">Details</label><br>
-                <textarea id="item-details" name="item-details"></textarea>
-            </div>
-            <input type="submit" value="Create Listing" id="create-listing-button">
+            <input type="button" value="Create Listing" id="create-listing-button">
         </form>
     </div>
+    <div id="popup" class="popup">Item Listed</div>
 
     <script src="/js/createListing.js"></script>
 </body>
