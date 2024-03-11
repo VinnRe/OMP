@@ -1,4 +1,73 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const searchTerm = localStorage.getItem('searchTerm');
+    const forYouSection = document.querySelector('.for-you');
+
+    if (searchTerm) {
+        // Add a delay before searching
+        setTimeout(() => {
+            // Send a request to the server with the stored search term
+            fetch(`http://localhost:3000/listings?search=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Check if any items are found
+                    if (data.length === 0) {
+                        // If no items are found, display a message to the user
+                        const listingsContainer = document.querySelector('.listings');
+                        listingsContainer.innerHTML = '<p>No items found.</p>';
+                    } else {
+                        clearListings()
+                        updateListings(data);
+                        forYouSection.scrollIntoView({ behavior: 'smooth' });
+                        localStorage.removeItem('searchTerm');
+                        return
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching listings:', error);
+                    // Handle errors, show an error message to the user, etc.
+                });
+        }, 500); // Adjust delay time as needed
+    } else {
+        console.log('No search term stored.');
+    }
+
+    // Helper function to update the "For You" section with filtered items
+    function updateListings(listings) {
+        const listingsContainer = document.querySelector('.listings');
+        listingsContainer.innerHTML = ''; // Clear existing listings
+
+        listings.forEach(listing => {
+            const listingElement = createListingElement(listing);
+            listingsContainer.appendChild(listingElement);
+        });
+    }
+
+    // Helper function to create listing elements
+    function createListingElement(listing) {
+        const listingElement = document.createElement('div');
+        listingElement.classList.add('listing');
+        listingElement.innerHTML = `
+            <div class="listedItem">
+                <div class="image-container">
+                    <div class="scrollable-images">
+                        ${listingImages(listing.images)}
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="prev-btn">&lt;</button>
+                    <button class="next-btn">&gt;</button>
+                </div>
+                <h3>${listing.itemName}</h3>
+                <p>₱ ${listing.itemPrice}</p>
+                <p class="item-details">${listing.itemDescription}</p>
+                <button class='buy-btn'>Add to Cart</button>
+            </div>
+        `;
+        return listingElement;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     const browseDealsButton = document.querySelector('#browse-deals');
     const forYouSection = document.querySelector('.for-you');
 
