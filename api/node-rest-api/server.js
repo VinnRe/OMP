@@ -335,6 +335,56 @@ const server = http.createServer((req, res) => {
                     res.end(JSON.stringify({ error: 'Internal Server Error'}));
                 });
         });
+    } else if (req.method === 'POST' && req.url === '/addToCart') {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', () => {
+            console.log('Request Body:', body); // Log the request body
+            const { itemName, userID, itemID, itemPrice, imagePath } = JSON.parse(body);
+            console.log('Parsed Body:', { itemName, userID, itemID, itemPrice, imagePath }); // Log the parsed body
+            if (!itemName || !userID || !itemID || !itemPrice || !imagePath) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Missing required fields' }));
+                return;
+            }
+            console.log('ItemID:', itemID);
+            // Fetch itemPrice from listings table and imagePath from listing_images table
+            pool.query('SELECT l.itemPrice, l.itemName, li.imagePath FROM listings l JOIN listing_images li ON l.itemID = li.itemID WHERE l.itemID = ?',
+                [itemID],
+                (err, rows) => {
+                    if (err) {
+                        console.error('Error executing query', err);
+                        res.writeHead(500, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                        return;
+                    }
+                    
+                    console.log('Query result:', rows);
+                    if (rows.length > 0) {
+                        const { itemPrice, itemName, imagePath } = rows[0];
+    
+                        pool.query('INSERT INTO cart (itemName, userID, itemID, itemPrice, imagePath) VALUES (?, ?, ?, ?, ?)',
+                            [itemName, userID, itemID, itemPrice, imagePath],
+                            (err, result) => {
+                                if (err) {
+                                    console.error('Error executing query', err);
+                                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                                    res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                                    return;
+                                }
+                                console.log('Insert result:', result);
+                        
+                                res.writeHead(201, { 'Content-Type': 'application/json' });
+                                res.end(JSON.stringify({ message: 'Item added to cart successfully' }));
+                            });
+                    } else {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'Item not found' }));
+                    }
+                });
+        });
     } else {
         // Handle other routes or methods
         res.writeHead(404, { 'Content-Type' : 'application/json'})

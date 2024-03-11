@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchTerm = localStorage.getItem('searchTerm');
     const forYouSection = document.querySelector('.for-you');
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const userId = loggedInUser ? loggedInUser.userID : null;
 
     if (searchTerm) {
         // Add a delay before searching
@@ -30,6 +32,39 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.log('No search term stored.');
     }
+
+    // Use event delegation to handle click events on .buy-btn elements
+    document.addEventListener('click', async function(event) {
+        if (event.target && event.target.classList.contains('buy-btn')) {
+            console.log("CLICKED")
+            const button = event.target;
+            const listing = button.closest('.listing');
+            const itemName = listing.querySelector('h3').textContent;
+            const itemPrice = listing.querySelector('p').textContent;
+            const itemID = await getItemID(listing); // Fetch itemID asynchronously
+    
+            if (itemID !== null) {
+                const userID = userId
+                const imagePath = getImagePath(listing);
+    
+                console.log("Item ID:", itemID); // Check the itemID
+    
+                const data = {
+                    itemName: itemName,
+                    itemPrice: itemPrice,
+                    itemID: itemID,
+                    userID: userID,
+                    imagePath: imagePath
+                };
+    
+                // Send data to server
+                addToCart(data);
+            } else {
+                console.error('Failed to retrieve itemID for:', itemName);
+            }
+        }
+    });
+    
 
     // Helper function to update the "For You" section with filtered items
     function updateListings(listings) {
@@ -80,19 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-document.querySelectorAll('.category').forEach(category => {
-    category.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        const categoryId = category.querySelector('p').id;
-        if (categoryId === 'all-categories') {
-            clearListings()
-            fetchListings(); // Call fetchListings function to show all listings
-        } else {
-            fetchListingsByCategory(categoryId); // Otherwise, fetch listings by category
-        }
-    });
-});
 
 function clearListings() {
     const listingsContainer = document.querySelector('.for-you .listings');
@@ -195,6 +217,68 @@ function listingImages(images) {
     if (!images || images.length === 0) return ''; // Return empty string if no images
     // Display all images
     return images.map(image => `<img src="${image}" alt="Listing Image">`).join('');
+}
+
+async function getItemID(listing) {
+    // Extract item name from the listing
+    const itemNameElement = listing.querySelector('h3');
+    if (!itemNameElement) {
+        console.error('Item name element not found in the listing:', listing);
+        return null;
+    }
+    const itemName = itemNameElement.textContent;
+    console.log('Item name:', itemName); // Add this line for debugging
+
+    try {
+        // Fetch the listings to find the itemID
+        const response = await fetch(`http://localhost:3000/listings`);
+        const data = await response.json();
+
+        // Find the item with the corresponding itemName
+        const selectedItem = data.find(item => item.itemName === itemName);
+
+        if (selectedItem) {
+            // Return the itemID if found
+            return selectedItem.itemID;
+        } else {
+            // Handle the case where item is not found
+            console.error('Item not found in database:', itemName);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching listings:', error);
+        return null; // Return null in case of an error
+    }
+}
+
+function getImagePath(listing) {
+    // Implement logic to get the image path from the listing
+    // You might need to traverse the DOM or use a specific class/id
+    return listing.querySelector('img').src; // Example assuming image path is in an img element
+}
+
+function addToCart(data) {
+    fetch('http://localhost:3000/addToCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add item to cart');
+        }
+        return response.json();
+    })
+    .then(result => {
+        // Handle successful response
+        console.log(result.message); // Log success message or update UI
+    })
+    .catch(error => {
+        // Handle error
+        console.error('Error adding item to cart:', error);
+    });
 }
 
 // Call the fetchListings function when the page loads
