@@ -273,7 +273,7 @@ function addToCart(data) {
     })
     .then(result => {
         // Handle successful response
-        console.log(result.message); // Log success message or update UI
+        alert(result.message)
     })
     .catch(error => {
         // Handle error
