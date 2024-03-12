@@ -385,6 +385,20 @@ const server = http.createServer((req, res) => {
                     }
                 });
         });
+    } else if (req.method === 'GET' && req.url === '/userCart') {
+        const userId = req.headers['user-id']; // Extract userId from headers
+        // Query the database to fetch cart data for the logged-in user
+        // Replace this with your actual database query
+        pool.query('SELECT * FROM cart WHERE userId = ?', [userId], (error, results) => {
+            if (error) {
+                console.error('Error fetching cart data:', error);
+                res.status(500).json({ error: 'Internal Server Error' });
+                return;
+            }
+            // Send the cart data back to the client
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Items from cart successfully added', user: results}));
+        });
     } else {
         // Handle other routes or methods
         res.writeHead(404, { 'Content-Type' : 'application/json'})
