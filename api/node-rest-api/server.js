@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require('uuid')
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'K@sc050505',
+    password: 'K@sc050505',  // CHANGE TO WHAT EVER PASSWORD OF THE WORKBENCH
     database: 'ompdatabase'
 })
 
